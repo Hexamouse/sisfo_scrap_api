@@ -15,15 +15,6 @@ router = APIRouter()
 
 @router.post("/login", response_model=AuthResponse)
 async def login(login_data: LoginRequest):
-    """
-    Login ke SISFO
-    
-    Contoh request:
-    {
-        "username": "22101152630449",
-        "password": "2213669NA"
-    }
-    """
     try:
         logger.info(f"Login attempt for: {login_data.username}")
         
