@@ -56,9 +56,9 @@ async def root():
 
 @app.on_event("startup")
 async def startup():
-    logger.info("🚀 Starting SISFO Scraper API")
-    logger.info(f"📚 Docs: http://localhost:{settings.PORT}/docs")
+    logger.info("Starting SISFO Scraper API")
+    logger.info(f"Docs: http://localhost:{settings.PORT}/docs")
 
 @app.on_event("shutdown")
 async def shutdown():
-    logger.info("👋 Shutting down SISFO Scraper API")
+    logger.info("Shutting down SISFO Scraper API")
