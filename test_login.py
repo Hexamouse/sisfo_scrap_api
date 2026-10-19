@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 
 def test_login():
     print("="*60)
-    print("🔐 TEST LOGIN SISFO")
+    print("TEST LOGIN SISFO")
     print("="*60)
     
     base_url = "https://sisfo.upiyptk.ac.id"
@@ -19,7 +19,7 @@ def test_login():
         'X-Requested-With': 'XMLHttpRequest',
     })
     
-    print("\n1️⃣ Mengambil CSRF token...")
+    print("\nMengambil CSRF token...")
     try:
         response = session.get(f"{base_url}/login", timeout=10)
         print(f"   Status: {response.status_code}")
@@ -29,15 +29,15 @@ def test_login():
         
         if csrf_token:
             csrf_token = csrf_token.get('value')
-            print(f"   ✅ CSRF: {csrf_token[:30]}...")
+            print(f"   CSRF: {csrf_token[:30]}...")
         else:
-            print("   ❌ CSRF tidak ditemukan!")
+            print("   CSRF tidak ditemukan!")
             return False
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"   Error: {e}")
         return False
     
-    print("\n2️⃣ Login...")
+    print("\nLogin...")
     try:
         login_data = {
             '_token': csrf_token,
@@ -67,7 +67,7 @@ def test_login():
                 print(f"   Response: {json.dumps(result, indent=2)}")
                 
                 if result.get('success') == True:
-                    print("\n   ✅ LOGIN BERHASIL!")
+                    print("\n   LOGIN BERHASIL!")
                     
                     # Follow redirect
                     redirect_url = result.get('redirect')
@@ -77,7 +77,7 @@ def test_login():
                         else:
                             full_url = urljoin(base_url, redirect_url)
                         
-                        print(f"   🔄 Following redirect to: {full_url}")
+                        print(f"   Following redirect to: {full_url}")
                         dashboard_response = session.get(
                             full_url,
                             headers={
@@ -92,28 +92,28 @@ def test_login():
                             soup = BeautifulSoup(dashboard_response.text, 'html.parser')
                             name = soup.find('span', class_='user-name') or soup.find('h4', class_='name')
                             if name:
-                                print(f"   👤 Nama: {name.text.strip()}")
+                                print(f"   Nama: {name.text.strip()}")
                     
-                    print("\n   🍪 Cookies:")
+                    print("\n   Cookies:")
                     for key, value in session.cookies.get_dict().items():
                         print(f"      {key}: {value[:50]}...")
                     
                     return True
                 else:
-                    print(f"\n   ❌ Login gagal: {result}")
+                    print(f"\n   Login gagal: {result}")
                     
             except json.JSONDecodeError:
                 print("   Response bukan JSON")
                 if 'dashboard' in response.text.lower():
-                    print("\n   ✅ LOGIN BERHASIL! (HTML response)")
+                    print("\n   LOGIN BERHASIL! (HTML response)")
                     return True
                 else:
                     print(f"\n   Response: {response.text[:200]}")
         else:
-            print(f"\n   ❌ Login gagal: {response.status_code}")
+            print(f"\n   Login gagal: {response.status_code}")
             
     except Exception as e:
-        print(f"   ❌ Error: {e}")
+        print(f"   Error: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -125,11 +125,11 @@ if __name__ == "__main__":
         success = test_login()
         print("\n" + "="*60)
         if success:
-            print("✅ ALL TESTS PASSED!")
+            print("ALL TESTS PASSED!")
         else:
-            print("❌ TESTS FAILED!")
+            print("TESTS FAILED!")
         print("="*60)
     except Exception as e:
-        print(f"❌ Fatal Error: {e}")
+        print(f"Fatal Error: {e}")
         import traceback
         traceback.print_exc()
