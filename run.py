@@ -12,12 +12,12 @@ if __name__ == "__main__":
     reload = os.getenv('RELOAD', 'True').lower() == 'true'
     
     print("="*60)
-    print("🚀 SISFO Scraper API")
+    print("SISFO Scraper API")
     print("="*60)
-    print(f"📍 Host: {host}")
-    print(f"🔌 Port: {port}")
-    print(f"🔄 Auto-reload: {reload}")
-    print(f"📚 Docs: http://localhost:{port}/docs")
+    print(f"Host: {host}")
+    print(f"Port: {port}")
+    print(f"Auto-reload: {reload}")
+    print(f"Docs: http://localhost:{port}/docs")
     print("="*60)
     print("")
     
