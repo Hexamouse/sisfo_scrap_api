@@ -9,8 +9,6 @@ def test_login():
     print("="*60)
     
     base_url = "https://sisfo.upiyptk.ac.id"
-    username = "22101152630449"
-    password = "2213669NA"
     
     # Session
     session = requests.Session()
